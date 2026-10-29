@@ -16,6 +16,7 @@ env/
 # VS Code
 
 .vscode/
+.idea/
 
 # Jupyter
 
@@ -37,6 +38,7 @@ Thumbs.db
 
 data/master_data/*.csv
 data/transactional_data/*.csv
+data/transactional_data/force_curve_points.csv
 
 # Keep folder structure
 
