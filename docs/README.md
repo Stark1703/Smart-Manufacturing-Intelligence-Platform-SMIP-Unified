@@ -1,135 +1,53 @@
-# 📚 Documentation
+# SMIP documentation
 
-Welcome to the documentation for the **Smart Manufacturing Intelligence Platform (SMIP)**.
+This documentation covers the unified repository: the manufacturing data generator,
+event-streaming prototype, Databricks Lakehouse notebooks, SQL assets, and Power BI
+materials. The two source branches have been integrated; these components are no
+longer documented as separate repositories.
 
-This documentation provides a comprehensive description of the project's architecture, manufacturing simulation, data model, analytics, and development guidelines.
+## Start here
 
----
+1. [Project overview](01_overview/README.md)
+2. [Architecture](02_architecture/README.md)
+3. [Data model](03_data_model/README.md)
+4. [Data engineering](04_data_engineering/README.md)
+5. [Business intelligence](05_business_intelligence/README.md)
+6. [User guide](06_user_guide/README.md)
+7. [Development guide](07_development/README.md)
 
-# Documentation Structure
+The [repository root README](../README.md) provides the short project overview and
+quick start. The [branch integration notes](merge-plan.md) record the history of the
+unification work; they are not deployment instructions.
 
-```text
-docs/
-│
-├── architecture/
-├── data_model/
-├── analytics/
-├── user_guide/
-├── development/
-└── images/
-```
+## Documentation map
 
----
+| Area | Canonical section | Contents |
+|---|---|---|
+| Overview | [`01_overview/`](01_overview/README.md) | Business problem, scope, manufacturing workflow, project goals |
+| Architecture | [`02_architecture/`](02_architecture/README.md) | System, Lakehouse, pipeline, Medallion Architecture, technology stack |
+| Data model | [`03_data_model/`](03_data_model/README.md) | Event model, business keys, dimensions, facts, data lineage |
+| Data engineering | [`04_data_engineering/`](04_data_engineering/README.md) | Bronze/Silver/Gold processing, dimensions, facts, execution |
+| Business intelligence | [`05_business_intelligence/`](05_business_intelligence/README.md) | KPIs, dashboards, SQL analytics |
+| User guide | [`06_user_guide/`](06_user_guide/README.md) | Setup, execution, dashboard usage, troubleshooting |
+| Development | [`07_development/`](07_development/README.md) | Repository structure, branch history, decisions, roadmap |
+| Diagrams and screenshots | [`08_images/`](08_images/) | Architecture, dashboards, schemas, lineage |
+| V2 roadmap | [`08_v2.0/`](08_v2.0/) | Proposed streaming, API, predictive maintenance, and CI/CD increments |
 
-# 📐 Architecture
+## Supplemental material
 
-System-level documentation describing the design of the platform.
+The merge brought in additional documents under
+[`02_data_model/`](02_data_model/README.md),
+[`03_data_engineering/`](03_data_engineering/README.md),
+[`04_business_intelligence/`](04_business_intelligence/README.md),
+[`05_user_guide/`](05_user_guide/README.md),
+[`06_development/`](06_development/README.md), and
+[`07_images/`](07_images/README.md). These are supplemental source-branch
+documents retained for reference. Prefer the canonical sections above when both
+areas cover the same topic.
 
-| Document | Description |
-|----------|-------------|
-| system_architecture.md | Overall system architecture |
-| factory_digital_twin.md | Factory Digital Twin model |
-| manufacturing_workflow.md | Manufacturing process flow |
-| medallion_architecture.md | Databricks Medallion Architecture |
-| project_structure.md | Repository architecture |
+## Technology scope
 
----
-
-# 🗄️ Data Model
-
-Documentation describing all generated datasets.
-
-| Document | Description |
-|----------|-------------|
-| master_data.md | Master data model |
-| transactional_data.md | Transactional datasets |
-| entity_relationships.md | Entity relationship model |
-| data_lineage.md | Manufacturing traceability |
-| dataset_dictionary.md | Complete data dictionary |
-
----
-
-# 📊 Analytics
-
-Analytics and reporting documentation.
-
-| Document | Description |
-|----------|-------------|
-| manufacturing_kpis.md | Manufacturing KPIs |
-| sql_examples.md | Example SQL queries |
-| powerbi_dashboard.md | Dashboard design |
-| databricks_lakehouse.md | Lakehouse implementation |
-
----
-
-# 👨‍💻 User Guide
-
-Documentation for installing and running the project.
-
-| Document | Description |
-|----------|-------------|
-| installation.md | Installation guide |
-| quick_start.md | Five-minute quick start |
-| execution_order.md | Script execution order |
-| troubleshooting.md | Common issues and fixes |
-| faq.md | Frequently asked questions |
-
----
-
-# 🛠️ Development
-
-Documentation for contributors and future development.
-
-| Document | Description |
-|----------|-------------|
-| project_structure.md | Repository layout |
-| coding_guidelines.md | Coding standards |
-| roadmap.md | Future enhancements |
-| changelog.md | Version history |
-| contributing.md | Contribution guidelines |
-
----
-
-# 📷 Images
-
-The `images/` directory contains all project diagrams and screenshots.
-
-Planned diagrams include:
-
-- System Architecture
-- Factory Digital Twin
-- Manufacturing Workflow
-- Medallion Architecture
-- Entity Relationship Diagram
-- Data Lineage
-- Dashboard Architecture
-
----
-
-# Recommended Reading Order
-
-If you are new to the project, follow this sequence:
-
-1. System Architecture
-2. Project Structure
-3. Factory Digital Twin
-4. Manufacturing Workflow
-5. Master Data Model
-6. Transactional Data Model
-7. Data Lineage
-8. Databricks Lakehouse
-9. Manufacturing KPIs
-
----
-
-# Documentation Status
-
-| Section | Status |
-|----------|:------:|
-| Architecture | 🚧 In Progress |
-| Data Model | 🚧 In Progress |
-| User Guide | 🚧 In Progress |
-| Analytics | 🚧 In Progress |
-| Development | 🚧 In Progress |
-
-The documentation is continuously updated as new features are added to the platform.
+The repository includes Python-based data generation and streaming code, Databricks
+notebooks using Spark/Delta Lake, SQL assets, and Power BI reports. Some components
+require external services or platform-specific setup; see the [environment setup guide](06_user_guide/environment_setup.md)
+and [Databricks notebook guide](../databricks/README.md) before running them.
