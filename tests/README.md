@@ -1,106 +1,30 @@
 # Tests
 
-## Overview
+The automated unit tests use Python's standard-library `unittest` runner. They
+exercise the JSONL Bronze/Silver readers, Silver transformation and validation,
+Silver writing, event-type definitions, local Markdown links, and notebook JSON
+structure. Tests use temporary directories and do not require or modify the
+checked-in sample datasets.
 
-The `tests` directory contains validation scripts used to verify the correctness of the Smart Manufacturing Intelligence Platform (SMIP V2).
+Run the complete suite from the repository root:
 
-The tests ensure that manufacturing data is processed accurately across every layer of the Lakehouse architecture.
-
----
-
-## Directory Structure
-
-```text
-tests/
-
-├── bronze/
-├── gold/
-├── integration/
-└── silver/
+```bash
+python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
----
+The suite is also run by [GitHub Actions](../.github/workflows/ci.yml) for pushes
+and pull requests.
 
-## Folder Description
+## Manual service examples
 
-### `bronze/`
+Kafka examples are kept outside the test suite under [`examples/kafka/`](../examples/kafka/).
+Install the optional client with `python -m pip install -r requirements-kafka.txt`.
+Start the broker with
+`docker compose -f infrastructure/kafka/docker-compose.yml up -d`, then run
+`python -m examples.kafka.consume_events` and
+`python -m examples.kafka.produce_event` in separate terminals. Stop it with
+`docker compose -f infrastructure/kafka/docker-compose.yml down`. These scripts
+are not run by unit-test discovery.
 
-Validates raw data ingestion.
-
-Typical checks include:
-
-- File ingestion
-- Schema validation
-- Record counts
-- Null value detection
-
----
-
-### `silver/`
-
-Verifies data cleansing and standardization.
-
-Typical checks include:
-
-- Data quality rules
-- Business validations
-- Event transformations
-
----
-
-### `gold/`
-
-Validates KPI calculations and business metrics.
-
-Typical checks include:
-
-- Aggregations
-- KPI accuracy
-- Dashboard datasets
-
----
-
-### `integration/`
-
-Performs end-to-end validation across the complete data pipeline.
-
-Examples include:
-
-- Pipeline execution
-- Layer dependencies
-- Dataset consistency
-- End-to-end workflow validation
-
----
-
-## Validation Strategy
-
-```text
-Raw Events
-
-↓
-
-Bronze Validation
-
-↓
-
-Silver Validation
-
-↓
-
-Dimension & Fact Validation
-
-↓
-
-Gold KPI Validation
-
-↓
-
-Dashboard Validation
-```
-
----
-
-## Summary
-
-The testing framework helps ensure that each stage of the manufacturing analytics pipeline produces reliable, accurate, and consistent datasets for downstream reporting and analysis.
+Databricks notebook and Power BI validation requires their respective external
+services and is not covered by the local unit-test job.

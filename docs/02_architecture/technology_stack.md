@@ -240,15 +240,19 @@ This model simplifies manufacturing reporting while improving query performance.
 
 Version control is managed using Git.
 
-The project is organized into multiple branches representing different stages of development.
+The unified repository brings together code that was originally developed on
+separate branches.
 
-Examples include:
+Historical source branches included:
 
 - main
 - v2.0-dev
 - databricks-v2
 
-This branching strategy separates the local manufacturing simulation from the cloud-native Lakehouse implementation.
+Those source branches have been merged into the Unified repository. The
+repository now contains both local Python components and Databricks assets; choose
+the documented workflow that matches the dataset rather than treating the old
+branches as separate deployments.
 
 ---
 

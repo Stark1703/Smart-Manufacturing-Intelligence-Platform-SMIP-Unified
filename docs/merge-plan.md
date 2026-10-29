@@ -74,7 +74,11 @@ Only proceed to a PR against `main` when all of the following are true:
 - run-time data paths are not duplicated
 - docs reflect the unified architecture
 
-## Current status
-- `integration/smip-unify` branch exists and is the staging branch.
-- No merge has been attempted into `main`.
-- The next action is to merge `databricks-v2` into this integration branch in a controlled step, then validate before continuing.
+## Integration status
+- `databricks-v2` and `v2.0-dev` have both been merged into `integration/smip-unify`.
+- Python compilation and a read-only streaming smoke check passed after integration.
+- Pull request [#2](https://github.com/Stark1703/Smart-Manufacturing-Intelligence-Platform-SMIP-Unified/pull/2) proposes the integration to `main`.
+- `main` remains unchanged until the pull request is reviewed and merged.
+
+This file is retained as a record of the integration strategy. For current setup and
+project documentation, start at [the documentation index](README.md).

@@ -27,6 +27,7 @@
 ![Lakeflow](https://img.shields.io/badge/Lakeflow-Declarative%20Pipelines-red)
 ![SQL](https://img.shields.io/badge/SQL-Databricks-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
+[![CI](https://github.com/Stark1703/Smart-Manufacturing-Intelligence-Platform-SMIP-Unified/actions/workflows/ci.yml/badge.svg)](https://github.com/Stark1703/Smart-Manufacturing-Intelligence-Platform-SMIP-Unified/actions/workflows/ci.yml)
 
 ---
 ## 📑 Table of Contents
@@ -57,28 +58,28 @@ Manufacturing events are processed through a complete **Medallion Architecture**
 
 ---
 
-# 🚀 End-to-End Data Flow
+# 🚀 Data Workflows
 
 ```text
-Manufacturing Event Generator
+Manufacturing Event Source
 
         │
 
         ▼
 
-Raw JSON Manufacturing Events
+JSON Manufacturing Events
 
         │
 
         ▼
 
-Unity Catalog Volume
+Configured Unity Catalog Volume
 
         │
 
         ▼
 
-Lakeflow Declarative Pipeline
+Configured Lakeflow Pipeline
 
         │
 
@@ -117,6 +118,12 @@ Gold KPI Tables
 Databricks SQL Dashboard
 ```
 
+The repository includes two Databricks notebook paths (event-based and
+transactional CSV) plus local Python streaming code. Choose one Databricks path
+for a deployment; their inputs and output schemas overlap. Workspace-specific
+pipeline/job configuration is not included. See the [Databricks guide](databricks/README.md)
+before running notebooks.
+
 ---
 
 # ✨ Project Highlights
@@ -136,13 +143,12 @@ Databricks SQL Dashboard
 ## ⚙ Data Engineering
 
 - Databricks Lakehouse
-- Lakeflow Declarative Pipelines
+- Lakeflow Declarative Pipeline notebook code
 - Delta Lake
 - Unity Catalog
 - Medallion Architecture
 - Star Schema
 - Data Quality Validation
-- Incremental Processing
 
 ---
 
@@ -172,7 +178,7 @@ Core architectural components include:
 - Manufacturing Event Generator
 - Unity Catalog
 - Delta Lake
-- Lakeflow Declarative Pipelines
+- Lakeflow Declarative Pipelines (configured in the workspace)
 - Medallion Architecture
 - Star Schema
 - Gold KPI Layer
@@ -189,7 +195,7 @@ Core architectural components include:
 | Storage | Delta Lake |
 | Governance | Unity Catalog |
 | Processing | Apache Spark |
-| Orchestration | Lakeflow Declarative Pipelines |
+| Orchestration | Workspace-configured Lakeflow pipeline |
 | Query Engine | Databricks SQL |
 | Analytics | SQL |
 | Version Control | Git & GitHub |
@@ -222,7 +228,19 @@ Smart-Manufacturing-Intelligence-Platform-SMIP-Unified
 │
 ├── docs/
 │
+├── examples/
+│
+├── framework/
+│
+├── generator/
+│
+├── infrastructure/
+│
+├── powerbi/
+│
 ├── sql/
+│
+├── streaming/
 │
 └── tests/
 ```
@@ -281,45 +299,31 @@ git clone https://github.com/Stark1703/Smart-Manufacturing-Intelligence-Platform
 cd Smart-Manufacturing-Intelligence-Platform-SMIP-Unified
 ```
 
+## Run local tests
+
+The unit tests use only the Python standard library and do not require Databricks
+or Kafka:
+
+```bash
+python -m unittest discover -s tests -p "test_*.py" -v
+```
+
+See the [environment setup guide](docs/06_user_guide/environment_setup.md) for environment
+setup and the [documentation index](docs/README.md) for architecture and usage
+guides.
+
 ---
 
-## Open Databricks
+## Run a Databricks workflow
 
-Import the notebooks into your Databricks Workspace.
+Import the required notebooks into your Databricks workspace, then choose either
+the event-based Lakehouse path or the transactional CSV path described in the
+[Databricks guide](databricks/README.md). The repository contains assets from
+both source branches; their numbered folders overlap and should not be run as one
+unreviewed sequence.
 
-Execute notebooks in the following order:
-
-```text
-00_setup
-
-↓
-
-01_bronze
-
-↓
-
-02_silver
-
-↓
-
-03_dimensions
-
-↓
-
-04_facts
-
-↓
-
-05_gold
-
-↓
-
-06_sql_dashboard
-
-↓
-
-07_validation
-```
+The workspace-specific Lakeflow pipeline/job, catalog, schema, volume, and
+permissions must be configured separately. See the [environment setup guide](docs/06_user_guide/environment_setup.md).
 
 ---
 
@@ -344,6 +348,7 @@ This project demonstrates practical implementation of:
 ## ✅ Current (SMIP V2)
 
 - Manufacturing Event Generator
+- Local Kafka streaming prototype
 - Databricks Lakehouse
 - Delta Lake
 - Unity Catalog
@@ -353,10 +358,11 @@ This project demonstrates practical implementation of:
 
 ---
 
-## 🚀 Future
+## 🚀 Planned work
 
-- Real-Time Event Streaming
-- IoT Integration
+- Production deployment and orchestration configuration
+- End-to-end tests for external Databricks and Kafka services
+- Operational monitoring and recovery
 - Predictive Maintenance
 - OEE Analytics
 - Machine Learning

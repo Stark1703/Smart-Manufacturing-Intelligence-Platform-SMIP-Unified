@@ -1,10 +1,12 @@
-# 05 — Troubleshooting
+# Troubleshooting
 
 ## Introduction
 
 This document provides solutions to the most common issues encountered when deploying, executing, and operating the Smart Manufacturing Intelligence Platform (SMIP) V2.
 
-The troubleshooting procedures described here cover the complete Lakehouse workflow, including repository deployment, Unity Catalog configuration, Lakeflow Declarative Pipelines, Delta tables, and the Databricks SQL Executive Dashboard.
+The repository includes local Python components and multiple Databricks notebook
+paths. Troubleshoot the selected workflow from its inputs through its outputs;
+downstream tables and dashboards depend on the relevant upstream steps.
 
 Whenever possible, begin troubleshooting at the earliest stage of the pipeline, as downstream datasets depend on the successful completion of upstream processing.
 
@@ -69,13 +71,13 @@ Verify that the correct repository has been cloned.
 Repository:
 
 ```text
-Smart-Manufacturing-Intelligence-Platform-SMIP-V-1.0
+Smart-Manufacturing-Intelligence-Platform-SMIP-Unified
 ```
 
 Branch:
 
 ```text
-databricks-v2
+the branch selected for your deployment (normally main after the integration PR is merged)
 ```
 
 Refresh the Databricks Repo after synchronization.

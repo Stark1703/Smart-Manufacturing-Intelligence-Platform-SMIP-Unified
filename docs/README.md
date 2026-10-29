@@ -1,167 +1,53 @@
-# Smart Manufacturing Intelligence Platform (SMIP) V2 - Documentation
+# SMIP documentation
 
-## Overview
+This documentation covers the unified repository: the manufacturing data generator,
+event-streaming prototype, Databricks Lakehouse notebooks, SQL assets, and Power BI
+materials. The two source branches have been integrated; these components are no
+longer documented as separate repositories.
 
-Welcome to the technical documentation of the **Smart Manufacturing Intelligence Platform (SMIP) V2**, a cloud-native manufacturing analytics platform built on the **Databricks Lakehouse Platform**.
+## Start here
 
-This documentation explains the complete engineering journey of transforming raw manufacturing events into business intelligence using a modern Medallion Architecture. It covers the project from business requirements and system architecture to dimensional modeling, data engineering, KPI development, and dashboard visualization.
+1. [Project overview](01_overview/README.md)
+2. [Architecture](02_architecture/README.md)
+3. [Data model](03_data_model/README.md)
+4. [Data engineering](04_data_engineering/README.md)
+5. [Business intelligence](05_business_intelligence/README.md)
+6. [User guide](06_user_guide/README.md)
+7. [Development guide](07_development/README.md)
 
-The goal of this documentation is to provide a clear understanding of the design decisions, implementation details, and engineering practices used throughout the project.
+The [repository root README](../README.md) provides the short project overview and
+quick start. The [branch integration notes](merge-plan.md) record the history of the
+unification work; they are not deployment instructions.
 
----
+## Documentation map
 
-# About the Project
+| Area | Canonical section | Contents |
+|---|---|---|
+| Overview | [`01_overview/`](01_overview/README.md) | Business problem, scope, manufacturing workflow, project goals |
+| Architecture | [`02_architecture/`](02_architecture/README.md) | System, Lakehouse, pipeline, Medallion Architecture, technology stack |
+| Data model | [`03_data_model/`](03_data_model/README.md) | Event model, business keys, dimensions, facts, data lineage |
+| Data engineering | [`04_data_engineering/`](04_data_engineering/README.md) | Bronze/Silver/Gold processing, dimensions, facts, execution |
+| Business intelligence | [`05_business_intelligence/`](05_business_intelligence/README.md) | KPIs, dashboards, SQL analytics |
+| User guide | [`06_user_guide/`](06_user_guide/README.md) | Setup, execution, dashboard usage, troubleshooting |
+| Development | [`07_development/`](07_development/README.md) | Repository structure, branch history, decisions, roadmap |
+| Diagrams and screenshots | [`08_images/`](08_images/) | Architecture, dashboards, schemas, lineage |
+| V2 roadmap | [`08_v2.0/`](08_v2.0/) | Proposed streaming, API, predictive maintenance, and CI/CD increments |
 
-The Smart Manufacturing Intelligence Platform (SMIP) V2 demonstrates how modern Data Engineering techniques can be applied to manufacturing environments to create a scalable analytics platform.
+## Supplemental material
 
-The project simulates an industrial manufacturing process and processes production events through a complete Lakehouse architecture implemented with:
+The merge brought in additional documents under
+[`02_data_model/`](02_data_model/README.md),
+[`03_data_engineering/`](03_data_engineering/README.md),
+[`04_business_intelligence/`](04_business_intelligence/README.md),
+[`05_user_guide/`](05_user_guide/README.md),
+[`06_development/`](06_development/README.md), and
+[`07_images/`](07_images/README.md). These are supplemental source-branch
+documents retained for reference. Prefer the canonical sections above when both
+areas cover the same topic.
 
-- Databricks
-- Delta Lake
-- Unity Catalog
-- Lakeflow Declarative Pipelines
-- Star Schema dimensional modeling
-- Databricks SQL Dashboards
+## Technology scope
 
-The result is an end-to-end manufacturing analytics solution that transforms raw production events into business-ready insights.
-
----
-
-# Documentation Structure
-
-The documentation is organized into eight sections that follow the natural lifecycle of the project.
-
-| Section | Description |
-|---------|-------------|
-| **01 Overview** | Project background, objectives, scope and business context |
-| **02 Architecture** | System architecture, Lakehouse design, Medallion Architecture and technology stack |
-| **03 Data Model** | Manufacturing process, event model, Star Schema, dimensions and fact tables |
-| **04 Data Engineering** | Bronze, Silver, Dimensions, Facts, Gold layers and pipeline implementation |
-| **05 Business Intelligence** | Manufacturing KPIs, SQL dashboards and executive reporting |
-| **06 User Guide** | Environment setup, deployment and pipeline execution |
-| **07 Development** | Project evolution, engineering decisions, roadmap and lessons learned |
-| **08 Images** | Architecture diagrams, dashboard screenshots, lineage and design illustrations |
-
----
-
-# Documentation Roadmap
-
-The documentation is designed to be read in sequence.
-
-```
-Business Problem
-        │
-        ▼
-System Architecture
-        │
-        ▼
-Data Model
-        │
-        ▼
-Lakehouse Engineering
-        │
-        ▼
-Business KPIs
-        │
-        ▼
-SQL Dashboard
-        │
-        ▼
-Project Evolution
-```
-
-Each section builds upon the previous one to explain both the technical implementation and the reasoning behind the design.
-
----
-
-# Project Architecture
-
-The Smart Manufacturing Intelligence Platform follows a layered Lakehouse architecture.
-
-```
-Manufacturing Events
-        │
-        ▼
-Bronze Layer
-(Raw Data)
-        │
-        ▼
-Silver Layer
-(Cleansed & Standardized Data)
-        │
-        ▼
-Dimension Tables
-        │
-        ▼
-Fact Tables
-        │
-        ▼
-Gold KPI Tables
-        │
-        ▼
-Databricks SQL Dashboard
-```
-
-This architecture separates data ingestion, transformation, business modeling, and analytics into well-defined layers that improve maintainability, scalability, and governance.
-
----
-
-# Technologies
-
-The project combines modern cloud data engineering technologies, including:
-
-| Category | Technology |
-|----------|------------|
-| Cloud Platform | Databricks |
-| Storage | Delta Lake |
-| Governance | Unity Catalog |
-| Data Pipelines | Lakeflow Declarative Pipelines |
-| Programming | Python |
-| Query Language | SQL |
-| Analytics | Databricks SQL |
-| Data Modeling | Star Schema |
-| Version Control | Git & GitHub |
-
----
-
-# Intended Audience
-
-This documentation is intended for:
-
-- Data Engineers
-- Analytics Engineers
-- Manufacturing Engineers
-- Solution Architects
-- Students learning Lakehouse architecture
-- Technical recruiters and hiring managers
-
----
-
-# Repository
-
-The documentation corresponds to the **`databricks-v2`** branch of the Smart Manufacturing Intelligence Platform repository.
-
-This branch focuses exclusively on the Databricks Lakehouse implementation. The local manufacturing event generation platform is documented separately in the **`v2.0-dev`** branch.
-
----
-
-# Learning Objectives
-
-By reading this documentation, you will understand:
-
-- How manufacturing events are transformed into analytics-ready datasets
-- How the Medallion Architecture is implemented in Databricks
-- How a Star Schema supports manufacturing analytics
-- How Fact and Dimension tables are designed
-- How manufacturing KPIs are calculated
-- How Databricks SQL dashboards support operational decision-making
-
----
-
-# Next Section
-
-Continue with:
-
-**01 Overview → README.md**
-
-This section introduces the manufacturing business context, project objectives, and the engineering goals that motivated the development of SMIP V2.
+The repository includes Python-based data generation and streaming code, Databricks
+notebooks using Spark/Delta Lake, SQL assets, and Power BI reports. Some components
+require external services or platform-specific setup; see the [environment setup guide](06_user_guide/environment_setup.md)
+and [Databricks notebook guide](../databricks/README.md) before running them.

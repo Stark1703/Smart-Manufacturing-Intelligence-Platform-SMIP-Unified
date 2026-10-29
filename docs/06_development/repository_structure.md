@@ -2,20 +2,23 @@
 
 ## Overview
 
-SMIP follows a modular repository structure designed for maintainability and scalability.
+The Unified repository contains the generator, streaming prototype, Databricks
+implementation, and supporting analytics assets.
 
 ## Top-Level Structure
 
 ```text
-Smart-Manufacturing-Intelligence-Platform-SMIP-V-1.0/
+Smart-Manufacturing-Intelligence-Platform-SMIP-Unified/
 │
 ├── data/
 ├── databricks/
 ├── docs/
 ├── framework/
 ├── generator/
+├── infrastructure/
 ├── powerbi/
 ├── sql/
+├── streaming/
 └── tests/
 ```
 
@@ -26,6 +29,8 @@ Smart-Manufacturing-Intelligence-Platform-SMIP-V-1.0/
 | generator | Manufacturing simulator |
 | framework | Shared utilities |
 | databricks | Lakehouse notebooks |
+| infrastructure | Local Kafka infrastructure |
+| streaming | Event generation, Kafka integration, and Bronze/Silver processing |
 | powerbi | Reports and themes |
 | sql | SQL scripts and views |
 | docs | Technical documentation |

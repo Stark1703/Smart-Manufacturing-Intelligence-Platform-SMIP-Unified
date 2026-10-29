@@ -1,16 +1,29 @@
-from streaming.bronze.bronze_reader import BronzeReader
-from streaming.silver.silver_transformer import SilverTransformer
+import tempfile
+import unittest
+from datetime import UTC, datetime
+from pathlib import Path
+
+from streaming.silver.silver_event import SilverEvent
+from streaming.silver.silver_reader import SilverReader
+from streaming.silver.silver_storage import SilverStorage
 from streaming.silver.silver_writer import SilverWriter
 
-reader = BronzeReader()
-transformer = SilverTransformer()
-writer = SilverWriter()
 
-for bronze_event in reader.read():
+class SilverWriterTests(unittest.TestCase):
+    def test_writes_events_to_the_configured_directory(self) -> None:
+        event = SilverEvent(
+            event={"event_id": "event-1"},
+            bronze_ingestion_timestamp=datetime.now(UTC),
+            silver_processing_timestamp=datetime.now(UTC),
+        )
 
-    silver_event = transformer.transform(bronze_event)
+        with tempfile.TemporaryDirectory() as directory:
+            storage = SilverStorage(output_directory=directory)
+            writer = SilverWriter(storage=storage)
 
-    writer.write(silver_event)
+            writer.write_event(event)
 
-print("Finished writing Silver Events.")
-print("Output:", writer.path)
+            self.assertEqual(writer.path, Path(directory) / "manufacturing_events.jsonl")
+            stored = SilverReader(writer.path).read_all()
+            self.assertEqual(len(stored), 1)
+            self.assertEqual(stored[0]["event"], event.event)
